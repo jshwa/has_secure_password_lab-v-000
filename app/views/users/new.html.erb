@@ -1,6 +1,6 @@
 <%= form_for @user do |u| %>
 <%= u.text_field :username %>
-<%= u.password :password %>
-<%= u.password :password_confirmation %>
+<%= u.password_field :password %>
+<%= u.password_field :password_confirmation %>
 <%= u.submit %>
 <% end %>
