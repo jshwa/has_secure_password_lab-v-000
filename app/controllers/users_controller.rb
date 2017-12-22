@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 
   def index
-    if logged_in
-
+    if session[:user_id]
+      render 'index'
     else
-      redirect_to '/users/new'
+      redirect_to 'user/new'
+    end
   end
 
   def new
@@ -12,8 +13,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @user = User.find_by(username: user_params[:username])
-      return head(:forbidden) unless @user.authenticate(user_params[:password])
+    user = User.new(user_params).save
   end
 
   private
