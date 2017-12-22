@@ -13,9 +13,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    session[:user_id] = @user.id
-    redirect_to 'users/index'
+    if user_params[:password] != user_params[:password_confirmation]
+      redirect_to 'users/new'
+    else
+      @user = User.create(user_params)
+      session[:user_id] = @user.id
+      redirect_to 'users/index'
+    end
   end
 
   private
