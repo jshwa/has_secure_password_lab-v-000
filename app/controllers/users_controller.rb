@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if session[:user_id]
       render 'index'
     else
-      redirect_to 'user/new'
+      redirect_to '/user/new'
     end
   end
 
@@ -14,11 +14,11 @@ class UsersController < ApplicationController
 
   def create
     if user_params[:password] != user_params[:password_confirmation]
-      redirect_to 'users/new'
+      redirect_to '/users/new'
     else
       @user = User.create(user_params)
       session[:user_id] = @user.id
-      redirect_to 'users/index'
+      redirect_to '/users/index'
     end
   end
 
